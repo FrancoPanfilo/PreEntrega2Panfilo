@@ -1,9 +1,10 @@
 import Carrito from "./CartWidget";
 import Categorias from "./Categorias";
+import { Link } from "react-router-dom";
 function NavBar(){
     return(
         <nav className="barra">
-            <div className="titulo">Golfing</div>
+           <Link to="/" ><div className="titulo">Atomic</div></Link>
             <Categorias />
             <Carrito/>
         </nav>

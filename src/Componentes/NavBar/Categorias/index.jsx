@@ -1,11 +1,11 @@
+import { Link } from "react-router-dom"
 function Categorias(){
     return(
-        <select className="Cat" placeholder="Categoria">
-                <option selected>Categoria</option>
-                <option value={"1"}>Palos</option>
-                <option value={"2"}>Ropa</option>
-                <option value={"3"}>Herramientas</option>
-        </select>
+        <div className="categorias">
+            <Link to="/PC"><div>PC</div></Link>
+            <Link to="/Celular"><div>Celular</div></Link>
+            <Link to="/Musica"><div>Musica</div></Link>
+        </div>
     )
 }
 
