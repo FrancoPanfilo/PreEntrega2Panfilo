@@ -1,35 +1,39 @@
 body,html{
   width: 100%;
   height: 100%;
-  background-color:  #262421 !important;
+}
+
+#root .App{
+  background-color: #dfdddd;
+  width: 100%;
+  height: 100% !important;
 }
 .barra{
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   height: 10vh;
-  background-color: #1d1d1a;
+  background-color: #030637;
   color: white;
   align-items: center;
   margin-bottom: 2rem;
-}
-
-.titulo{
-  font-size: x-large;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .barra a{
-  color: orange;
+  color: rgb(255, 255, 255);
   text-decoration: none;
 }
 
 .barra a:hover{
-  color: orange;
+  color: rgb(255, 255, 255);
   text-decoration: none;
-  font-weight: bold;
 }
 
 .carrito{
   display: flex;
+  transform: scale(1.5);
 }
 
 .contador{
@@ -48,47 +52,96 @@ body,html{
   list-style-type: none; 
   display:flex;
   justify-content: space-between;
-  flex-basis: 30%;
-  text-align: center;
-  align-items: center;
+  flex-basis: 40%;
+  height: 100%;
+  font-family: "Arial Narrow";
+  font-size: large;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.categorias a, .categorias a div{
+height: 100%;
+}
+
+.categorias a {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.categorias a:hover{
+  background: linear-gradient(#030637, #2a2e83, #33378d, #030637);
+}
+
+.categorias a div{
+display: flex;
+align-items: center;
+}
+
+.titulo, .contenedorLogo{
+  height: 100%;
+}
+
+.logo{
+  height: 90%;
 }
 .ListaProductos{
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding-top: 15vh;
 }
 
 .ListaProductos a{
-height: 30vh;
 flex-basis: 20%;
 text-decoration: none;
-color:white;
-margin: 0.5rem 1rem;
+color:rgb(0, 0, 0);
+margin: 3vh 0.5rem;
+border:3px rgba(0, 0, 0, 0.419) hidden;
+background-color: white;
 }
 
-.Detalle{
-  height: 30vh;
-flex-basis: 20%;
-text-decoration: none;
-color: white;
-width: 40%;
-margin:0 auto
+.ListaProductos a .imagenContenedor{
+  border-top:  #ebebeb solid;
 }
-.itemDetalle .imagenContenedor img{
+.Detalle{
+  padding-top: 15vh;
+  height: 30vh;
+  flex-basis: 20%;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  width: 60%;
+  margin:0 auto;
+  height: fit-content;
+}
+.itemDetalle  img{
   max-height: 30vh;
   max-width: 100%;
 }
 
-.ListaProductos a:hover{
-  color: white;
-  background-color:  #2d2a26 ;
-  border:0.3px rgb(203, 199, 191) solid;
+.imagenContenedor{
+  width: 80%;
+  text-align: center;
+}
 
+.ListaProductos a:hover{
+  color: black;
+  transition-property: all 4s ;
+  box-shadow: 3px 3px 3px 3px rgba(169, 142, 127, 0.455), 8px 8px 8px 5px rgb(255, 172, 172); 
+/*   background: linear-gradient(
+      100deg,
+      rgba(46, 253, 0, 0.12),
+      rgba(255, 255, 255, 0.233) 70.71%
+    ), linear-gradient(127deg, rgb(0, 255, 0), rgba(255, 255, 255, 0.462) 70.71%),
+    linear-gradient(336deg, rgba(68, 255, 0, 0.993), rgb(255, 255, 255) 70.71%); */
 }
 
 .item{
   display: flex;
   flex-direction: column;
+  height: 40vh;
+  align-items: center;
 }
 .item .imagenContenedor img{
   max-height: 20vh;
@@ -97,4 +150,171 @@ margin:0 auto
 
 .item p, .itemDetalle p.precio{
 text-align: end;
+}
+
+.tituloSecundario{
+  justify-content: center;
+  text-align: center;
+}
+
+.precioItem{
+  font-size: 3vh;
+  justify-self: end;
+  margin-top: auto;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.itemDetalle{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.cart{
+  width: 100%;
+  display: flex;
+  background-color: #ebebeb;
+  padding-top: 15vh;
+}
+
+.productos{
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.productoCarrito{
+  height: auto;
+  width: 90%;
+}
+
+.productoCarrito{
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  border-radius: 1rem;
+  padding:1rem;
+}
+
+.productoCarritoCont{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.productoCarrito .nombreYCantidad{
+  display: flex;
+  justify-content: space-between;
+}
+
+.productoCarrito .nombreYCantidad p{
+font-size: small;
+background-color: green;
+padding: 5px;
+border-radius: 10%;
+}
+
+.productoCarrito img{
+  max-width: 30%;
+  max-height: 20vh;
+}
+
+.precioRojo{
+color: red;
+font-weight: bold;
+font-size: large;
+}
+
+.eliminar{
+  height: 4vh;
+  margin-left: 1rem;
+}
+
+.minCont{
+  display: flex;
+}
+
+#cantidadP{
+
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 30px;
+    padding: 5px;
+    width: 40px;
+}
+
+#cantidadP:focus{
+outline: none;
+}
+
+.botonAgregar {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.botonAgregar:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.barraLateral{
+  position: fixed;
+  display: flex;
+  top: 0;
+  justify-items: center;
+  height: 100%;
+  align-items: center;
+}
+
+.contenedorDesplegar {
+  width: 6vh;
+  height: 12vh;
+  background-color: #030637;
+  border-radius: 0 100px 100px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedorIcono{
+  width: 6vh;
+  height: 35px;
+  border-radius: 0 100px 100px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cambiarEscala{
+  transform: scale(2);
+}
+
+.iconoRotado{
+  transform:scale(2);
+
+}
+
+.Escondida{
+  overflow: hidden;
+  transition: width 1s ease-in .25s;
+  background-color: #020427;
+  height: 100%;
+  margin-top: 20vh;
+  width: 1px;
+}
+
+.Desplegada{
+  overflow: hidden;
+  transition: width 1s ease-out .25s;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: #020427;
+  height: 100%;
+  margin-top: 20vh;
 }
