@@ -8,24 +8,31 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 import MiCarritoDatos from "./MiCarritoContext";
 import BarraLateral from "./Componentes/BarraLateral";
+import FiltrosDatos from "./FiltrosDatos";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <MiCarritoDatos>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<BarraLateral />} />
-            <Route path="/Categoria/:categoria" element={<BarraLateral />} />
-          </Routes>
-          <Routes>
-            <Route path="/" element={<Articulos />} />
-            <Route path="/Categoria/:categoria" element={<Articulos />} />
-            <Route path="/detalle/:id" element={<ItemDetailContainer />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
+          <FiltrosDatos>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<BarraLateral />} />
+              <Route path="/Categoria/:categoria" element={<BarraLateral />} />
+            </Routes>
+            <Routes>
+              <Route path="/" element={<Articulos />} />
+              <Route path="/Categoria/:categoria" element={<Articulos />} />
+              <Route path="/detalle/:id" element={<ItemDetailContainer />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+          </FiltrosDatos>
         </MiCarritoDatos>
       </div>
+      <ToastContainer />
     </BrowserRouter>
   );
 }

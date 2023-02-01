@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from "react";
+import { toast } from "react-toastify";
 export const MiCarrito = React.createContext();
 const { Provider } = MiCarrito;
 
@@ -9,10 +10,9 @@ function MiCarritoDatos({ children }) {
 
   function agregarACarro(producto, cant) {
     let carro = carrito;
-    if (carro.find((prod) => producto === prod)) {
-      console.log(producto.nombre + " ya esta en el carrito");
+    if (carro.find((prod) => producto.id === prod.id)) {
+      toast(producto.nombre + " ya esta en el carrito");
     } else {
-      // clono el objeto para no cambiar las propiedades que este tenia
       let prod = { ...producto };
       prod.cantidad = cant;
       prod.precio = prod.precio * prod.cantidad;
@@ -37,9 +37,21 @@ function MiCarritoDatos({ children }) {
     }
   }
 
+  function vaciarCarrito() {
+    setCarrito([]);
+    setCantidad(0);
+  }
+
   return (
     <Provider
-      value={{ carrito, setCarrito, agregarACarro, eliminarItem, cantidad }}
+      value={{
+        carrito,
+        setCarrito,
+        agregarACarro,
+        eliminarItem,
+        vaciarCarrito,
+        cantidad,
+      }}
     >
       {children}
     </Provider>

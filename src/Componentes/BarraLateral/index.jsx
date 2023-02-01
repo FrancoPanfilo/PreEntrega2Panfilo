@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Filtros from "./Filtros";
 function BarraLateral() {
   const [barra, setBarra] = useState("Escondida");
   const [rotar, setRotar] = useState(
@@ -7,7 +8,7 @@ function BarraLateral() {
   return (
     <div className="barraLateral">
       <div className={barra}>
-        <h3>Filtros</h3>
+        <Filtros />
       </div>
       <div
         className="contenedorDesplegar"

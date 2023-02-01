@@ -4,41 +4,56 @@ import ItemList from "./ItemList";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { productsCollection } from "../../firebase";
-import { getDocs } from "firebase/firestore";
+import { getDocs, query, where } from "firebase/firestore";
+import { useContext } from "react";
+import { filtros } from "../../FiltrosDatos";
 
 function Articulos() {
   const [products, setProducts] = useState([]);
   const { categoria } = useParams();
+  const { minimo, maximo, setMaximo, setMinimo } = useContext(filtros);
   useEffect(() => {
     const getProducts = () => {
-      getDocs(productsCollection)
+      let filtro = productsCollection;
+      filtro = query(filtro, where("precio", ">=", minimo));
+      filtro = query(filtro, where("precio", "<=", maximo));
+      getDocs(filtro)
         .then((res) => {
           const productos = res.docs.map((pro) => {
             const producto = pro.data();
             producto.id = pro.id;
             return producto;
           });
-          // FIltro segun la categoria. Si no hay categoria , no se filtra
-          // se puede hacer con query , pero prefiero esta forma
           if (categoria) {
-            setProducts(
-              productos.filter((producto) => producto.categoria === categoria)
-            );
+            setProducts(productos.filter((pro) => pro.categoria === categoria));
           } else setProducts(productos);
         })
         .catch((error) => {
           console.log("Los Productos no se cargaron correctamente");
         });
     };
-
-    //ejecuto la funcion creada
     getProducts();
-  }, [categoria]);
-  return (
-    <div className="">
-      <ItemList productos={products} />
-    </div>
-  );
+  }, [categoria, maximo, minimo]);
+  if (products.length < 1) {
+    return (
+      <div className="errorFiltro">
+        <p>¡Los filtros no tienen resultado!</p>
+        <button
+          onClick={() => {
+            setMinimo(0);
+            setMaximo(99999);
+          }}
+        >
+          Restablecer filtros
+        </button>
+      </div>
+    );
+  } else
+    return (
+      <div className="">
+        <ItemList productos={products} />
+      </div>
+    );
 }
 
 export default Articulos;

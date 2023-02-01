@@ -1,8 +1,13 @@
 import { useContext } from "react";
+import { useState } from "react";
 import { MiCarrito } from "../../MiCarritoContext";
-
+import Autenticacion from "./Autenticacion";
+import Checkout from "./Checkout";
 function Cart() {
   const { carrito, eliminarItem } = useContext(MiCarrito);
+  const [factura, setFactura] = useState("facturaEscondida");
+  const [referencia, setReferencia] = useState("referenciaEscondida");
+  const [datos, setDatos] = useState({ total: 0 });
   return (
     <div className="cart">
       <div className="productos">
@@ -36,7 +41,11 @@ function Cart() {
           );
         })}
       </div>
-      <div className="factura"></div>
+      <Autenticacion desactivador={{ setFactura, setDatos }} />
+      <Checkout activador={{ factura, datos, setFactura, setReferencia }} />
+      <div className={referencia}>
+        <p id="ventaId"></p>
+      </div>
     </div>
   );
 }
