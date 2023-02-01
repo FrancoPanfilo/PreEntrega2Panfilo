@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# Atomic
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mi nombre es Franco Panfilo y este fue mi primer proyecto en React.
 
-## Available Scripts
+## Proyecto
 
-In the project directory, you can run:
+La app consiste en un e-comerce, en el mismo se puede navegar entre las categorias con la ayuda de useParams y react-routes (las mismas fueron previamente instaladas).
+A su vez , tanto en el menu principal como en cualquier categoria seleccionada se podra observar una lista de items. Esta lista , ademas de poder ser filtrada por categorias se puede filtrar por precio. Esta ultima funcionalidad no era obligatoria pero a mi entender hace mucho mas linda la pagina y brinda muy buenas funcionalidades.
 
-### `npm start`
+Los items son importados desde una base de datos en firebase, el nombre de la coleccion es Productos y se ven alrededor de 60 items, cada uno con distintas caracteristicas.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+En esta lista de items podemos seleccionar cualquiera de ellos para verlo al detalle, otra vez se usa useParams para identificar a que item se le hizo el "click". En el detalle de cada producto tendremos una descripcion detallada que no se podia ver en el item list, ademas de ver la foto del producto mas grande. Si el producto es del interes del usuario , este puede seleccionar una cantidad y guardarlo en su carrito.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Este carrito inicialmente esta vacio, sin embargo a medida que se van agregando items , estos se guardan , con sus respectivas cantidades y precios. El icono del carrito esta en la parte superior derecha, mientras el carrito este vacio este no sera clickeable , pero cuando se agregan productos este se vuelve un hipevinculo con la etiqueta "<Link/>" que os dirigira a una pestaña donde podremos ver nuestros productos y seguir con la compra.
 
-### `npm test`
+Los valores del carrito se pueden modificar desde varios componentes , muy separados como para enviar las funciones y propiedades entre todos ellos manuelmante si que quede muy desprolijo, entonces hice uso de hook useContext, envolviendo toda la app en la etiqueta "<MiCarritoDatos/>", este componente tiene la funcion de proveer de variables y funciones que involucrean al carrito a aquellos componentes que las necesiten. useContext tambien se uso para establecer los filtros en la lista de items, con un funcionamiento similar.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+En la pestaña del carrito se pueden ver los articulos seleccionas , con sus respectivas cantidades y precio. En la parte dercha un formulario que debe ser rellenado correctamente. Una vez ese formulario se complete se mostrara en el mismo lugar una factura , indicando que precio total , con un boton para confirmar la compra. Si la compra se confirma se subira esta compra a la coleccion "Ventas" en firebase , en la misma se podra observar los productos comprados y los datos del comprador , asi como una referencia de compra que se mostrara tambien en pantalla para que el usuario pueda buscar su pedido.
 
-### `npm run build`
+### Dependencias
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. "react-bootstrap" Para personalizar de forma mas sencilla los estilos.
+2. "react-toastify" Se uso para informar cuando hay un error , por ejemplo tratar de agregar un item al carrito que ya esta ahi.
+3. "react-phone-number-input" Me parece un input excelente para ingresar un numero de telefono.
